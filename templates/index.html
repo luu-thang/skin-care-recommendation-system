@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân Tích Loại Da</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Trang chủ</a>
+        <a href="{{ url_for('add_product') }}">Thêm Sản Phẩm</a>
+        <a href="{{ url_for('view_products') }}">Xem Sản Phẩm</a>
+    </div>
+    <div class="container">
+        <h1>Phân Tích Loại Da</h1>
+        <p>Hãy gửi ảnh để chúng tôi phân tích loại da của bạn.</p>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Phân Tích</button>
+        </form>
+
+        {% if skin_type %}
+            <h2>Kết Quả:</h2>
+            <img src="{{ url_for('static', filename=image) }}" alt="Uploaded Image">
+            <p>Tình trạng da của bạn: <strong>{{ skin_type }}</strong></p>
+
+            <h3>Sản phẩm phù hợp:</h3>
+            <ul>
+                {% for product in products %}
+                    <li>
+                        <h4>{{ product[1] }}</h4>
+                        <img src="{{ url_for('static', filename=product[5]) }}" alt="{{ product[1] }}" style="width:100px;">
+                        <p><strong>Mô tả:</strong> {{ product[2] }}</p>
+                        <p><strong>Tác dụng:</strong> {{ product[3] }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

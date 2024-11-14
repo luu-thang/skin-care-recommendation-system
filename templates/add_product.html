@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Sản Phẩm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Trang chủ</a>
+        <a href="{{ url_for('add_product') }}">Thêm Sản Phẩm</a>
+        <a href="{{ url_for('view_products') }}">Xem Sản Phẩm</a>
+    </div>
+    <div class="container">
+        <h1>Thêm Sản Phẩm Mới</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="product_name" placeholder="Tên sản phẩm" required>
+            <textarea name="product_description" placeholder="Mô tả" required></textarea>
+            <textarea name="product_effect" placeholder="Tác dụng" required></textarea>
+            <select name="skin_type" required>
+                <option value="Da Dầu">Da Dầu</option>
+                <option value="Da Khô">Da Khô</option>
+                <option value="Da Mụn">Da Mụn</option>
+                <option value="Da Bình Thường">Da Bình Thường</option>
+            </select>
+            <input type="file" name="product_image" accept="image/*" required>
+            <button type="submit">Thêm Sản Phẩm</button>
+        </form>
+    </div>
+</body>
+</html>

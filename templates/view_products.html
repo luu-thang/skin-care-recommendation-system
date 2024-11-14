@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xem Sản Phẩm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Trang chủ</a>
+        <a href="{{ url_for('add_product') }}">Thêm Sản Phẩm</a>
+        <a href="{{ url_for('view_products') }}">Xem Sản Phẩm</a>
+    </div>
+    <div class="container">
+        <h1>Danh Sách Sản Phẩm</h1>
+        <ul>
+            {% for product in products %}
+                <li>
+                    <h4>{{ product[1] }}</h4>
+                    <img src="{{ url_for('static', filename=product[5]) }}" alt="{{ product[1] }}" style="width:100px;">
+                    <p><strong>Mô tả:</strong> {{ product[2] }}</p>
+                    <p><strong>Tác dụng:</strong> {{ product[3] }}</p>
+                    <p><strong>Loại da:</strong> {{ product[4] }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
